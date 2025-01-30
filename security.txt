@@ -1,0 +1,2 @@
+Contact: mailto:your-email@example.com
+Preferred-Languages: en
