@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail - MT Taekwondo Shop</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="White Mt Taekwondo club logo.png">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="White Mt Taekwondo club logo.png" alt="MT Taekwondo Shop" class="logo-image">
+            </div>
+            <ul>
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#products">Products</a></li>
+            </ul>
+            <div class="cart-icon" id="cartIcon">
+                <span class="cart-count">0</span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <button class="back-button">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Back to Products
+        </button>
+        <div class="product-detail-container">
+            <div class="product-gallery">
+                <div class="main-image-container">
+                    <div class="zoom-container" id="zoomContainer">
+                        <img src="/placeholder.svg" alt="" id="mainImage" class="main-product-image">
+                    </div>
+                </div>
+                <div class="thumbnail-container" id="thumbnailContainer">
+                    <!-- Thumbnails will be dynamically added here -->
+                </div>
+            </div>
+            <div class="product-info">
+                <h1 id="productName"></h1> 
+                <div class="product-price">
+                    <span class="price-label">Price:</span>
+                    <span class="price-amount" id="productPrice"></span>
+                </div>
+                <div class="stock-status" id="stockStatus"></div>
+                <div class="quantity-selector">
+                    <label for="quantity">Quantity:</label>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn minus">−</button>
+                        <input type="number" class="quantity-input" id="quantity" value="1" min="1" max="99">
+                        <button class="quantity-btn plus">+</button>
+                    </div>
+                </div>
+               <button class="add-to-cart-btn" id="addToCartBtn">Add to Cart </button>
+                <div class="product-description">
+                    <h2>Product Description</h2>
+                    <div class="description-content" id="productDescription">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="White Mt Taekwondo club logo.png" alt="MT Taekwondo Shop" class="footer-logo-image">
+            </div>
+            <div class="social-links">
+                <a href="https://www.instagram.com/mttaekwondomelaka?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" class="social-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=61555034820534&mibextid=JRoKGi" target="_blank" rel="noopener noreferrer" class="social-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                </a>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2023 MT Taekwondo Shop. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="product-detail.js"></script>
+</body>
+</html>
+

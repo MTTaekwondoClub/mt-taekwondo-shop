@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - MT Taekwondo Shop</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="White Mt Taekwondo club logo.png">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="White Mt Taekwondo club logo.png" alt="MT Taekwondo Shop" class="logo-image">
+            </div>
+            <ul>
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#products">Products</a></li>
+            </ul>
+            <div class="cart-icon" id="cartIcon">
+                <span class="cart-count">0</span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="checkout">
+            <h1>Checkout</h1>
+            <div id="cart-summary">
+                <h2>Your Order</h2>
+                <div id="cart-items">
+                    <!-- Cart items will be dynamically added here -->
+                </div>
+                <hr class="summary-divider">
+                <div class="checkout-summary">
+                    <div id="cart-total">
+                        <!-- Total will be dynamically updated here -->
+                    </div>
+                    <div class="promo-code-section">
+                        <h3>Promotion Code</h3>
+                        <div class="promo-code-input">
+                            <input type="text" id="promo-code" placeholder="Enter promo code">
+                            <button id="apply-promo">Apply</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="White Mt Taekwondo club logo.png" alt="MT Taekwondo Shop" class="footer-logo-image">
+            </div>
+            <div class="social-links">
+                <a href="https://www.instagram.com/mttaekwondomelaka?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" class="social-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=61555034820534&mibextid=JRoKGi" target="_blank" rel="noopener noreferrer" class="social-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                </a>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2023 MT Taekwondo Shop. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="checkout.js"></script>
+</body>
+</html>
+
