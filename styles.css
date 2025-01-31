@@ -1980,3 +1980,80 @@ footer {
   opacity: 1;
 }
 
+/* Add these media queries at the end of your CSS file */
+
+/* For tablets and mobile devices */
+@media screen and (max-width: 768px) {
+  /* Header/Navigation */
+  .navbar {
+      padding: 10px;
+  }
+
+  .logo img {
+      max-width: 150px; /* Make logo smaller on mobile */
+  }
+
+  /* Hero section */
+  .hero {
+      padding: 40px 20px;
+  }
+
+  .hero h1 {
+      font-size: 24px; /* Smaller title on mobile */
+  }
+
+  .hero p {
+      font-size: 16px;
+  }
+
+  /* Products section */
+  .products-container {
+      grid-template-columns: 1fr; /* Single column on mobile */
+      gap: 20px;
+      padding: 20px;
+  }
+
+  .product-card {
+      width: 100%;
+      margin: 0 auto;
+  }
+
+  .product-card img {
+      max-width: 100%;
+      height: auto;
+  }
+
+  /* Cart icon */
+  .cart-container {
+      padding: 5px;
+  }
+
+  /* Checkout page specific */
+  .checkout-container {
+      padding: 10px;
+      flex-direction: column; /* Stack elements vertically on mobile */
+  }
+
+  .product-list, .total-summary {
+      width: 100%; /* Full width on mobile */
+      margin: 10px 0;
+  }
+}
+
+/* For very small devices */
+@media screen and (max-width: 480px) {
+  .hero h1 {
+      font-size: 20px;
+  }
+
+  .product-card {
+      padding: 10px;
+  }
+}
+
+/* Add at the top of your CSS file */
+* {
+  box-sizing: border-box;
+}
+
+/* Add in your HTML head section */
