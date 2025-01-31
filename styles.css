@@ -5,6 +5,17 @@
 }
 
 body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
   font-family: "Roboto", Arial, sans-serif;
   line-height: 1.6;
   color: #333;
@@ -1980,80 +1991,92 @@ footer {
   opacity: 1;
 }
 
-/* Add these media queries at the end of your CSS file */
-
-/* For tablets and mobile devices */
+/* Mobile-first responsive design */
 @media screen and (max-width: 768px) {
-  /* Header/Navigation */
+  /* Container */
+  .container {
+      width: 100%;
+      padding: 0 15px;
+      overflow-x: hidden;
+  }
+
+  /* Navbar */
   .navbar {
-      padding: 10px;
+      padding: 10px 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
   }
 
   .logo img {
-      max-width: 150px; /* Make logo smaller on mobile */
+      max-width: 120px; /* Smaller logo on mobile */
+      height: auto;
+  }
+
+  .nav-links {
+      font-size: 14px;
+  }
+
+  .nav-links a {
+      margin: 0 10px;
   }
 
   /* Hero section */
   .hero {
-      padding: 40px 20px;
+      padding: 20px 15px;
+      text-align: center;
+      width: 100%;
   }
 
   .hero h1 {
-      font-size: 24px; /* Smaller title on mobile */
+      font-size: 28px;
+      line-height: 1.2;
+      margin-bottom: 15px;
   }
 
   .hero p {
       font-size: 16px;
+      line-height: 1.4;
+      margin-bottom: 20px;
   }
 
-  /* Products section */
-  .products-container {
-      grid-template-columns: 1fr; /* Single column on mobile */
-      gap: 20px;
-      padding: 20px;
+  /* Products grid */
+  .products-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 15px;
+      padding: 15px;
   }
 
   .product-card {
       width: 100%;
-      margin: 0 auto;
+      margin: 0;
   }
 
-  .product-card img {
-      max-width: 100%;
-      height: auto;
-  }
-
-  /* Cart icon */
+  /* Cart */
   .cart-container {
-      padding: 5px;
+      position: relative;
+      padding-right: 5px;
   }
 
-  /* Checkout page specific */
-  .checkout-container {
-      padding: 10px;
-      flex-direction: column; /* Stack elements vertically on mobile */
-  }
-
-  .product-list, .total-summary {
-      width: 100%; /* Full width on mobile */
-      margin: 10px 0;
+  .cart-count {
+      font-size: 12px;
+      padding: 2px 6px;
   }
 }
 
-/* For very small devices */
+/* Extra small devices */
 @media screen and (max-width: 480px) {
   .hero h1 {
-      font-size: 20px;
+      font-size: 24px;
   }
 
-  .product-card {
-      padding: 10px;
+  .nav-links {
+      font-size: 12px;
+  }
+
+  .nav-links a {
+      margin: 0 5px;
   }
 }
-
-/* Add at the top of your CSS file */
-* {
-  box-sizing: border-box;
-}
-
-/* Add in your HTML head section */
