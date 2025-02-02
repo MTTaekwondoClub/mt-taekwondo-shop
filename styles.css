@@ -1980,3 +1980,57 @@ footer {
   opacity: 1;
 }
 
+@media screen and (max-width: 768px) {
+  body {
+      zoom: 0.67;
+      -moz-transform: scale(0.67);
+      -moz-transform-origin: 0 0;
+      -o-transform: scale(0.67);
+      -o-transform-origin: 0 0;
+      -webkit-transform: scale(0.67);
+      -webkit-transform-origin: 0 0;
+  }
+
+  /* Adjust container widths */
+  .container, main, #products, .product-grid {
+      width: 149.25373134328358%; /* 100 / 0.67 */
+      max-width: none;
+  }
+
+  /* Adjust footer */
+  footer {
+      width: 149.25373134328358%;
+      max-width: none;
+      box-sizing: border-box;
+  }
+
+  /* Ensure text doesn't get too small */
+  body, p, a, span, button {
+      font-size: 16px;
+  }
+
+  h1 {
+      font-size: 2.5em;
+  }
+
+  h2 {
+      font-size: 2em;
+  }
+}
+
+/* For even smaller screens */
+@media screen and (max-width: 480px) {
+  body {
+      zoom: 0.57;
+      -moz-transform: scale(0.57);
+      -moz-transform-origin: 0 0;
+      -o-transform: scale(0.57);
+      -o-transform-origin: 0 0;
+      -webkit-transform: scale(0.57);
+      -webkit-transform-origin: 0 0;
+  }
+
+  .container, main, #products, .product-grid, footer {
+      width: 175.43859649122806%; /* 100 / 0.57 */
+  }
+}
