@@ -1738,6 +1738,7 @@ footer {
 
 .promo-code-section {
   flex: 1;
+  margin-top: 2rem;
 }
 
 .promo-code-section h3 {
