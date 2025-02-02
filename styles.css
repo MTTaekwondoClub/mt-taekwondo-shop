@@ -1980,57 +1980,157 @@ footer {
   opacity: 1;
 }
 
+/* Add these mobile-specific styles at the end of your styles.css file */
+
 @media screen and (max-width: 768px) {
+  /* Reset any scaling */
   body {
-      zoom: 0.67;
-      -moz-transform: scale(0.67);
-      -moz-transform-origin: 0 0;
-      -o-transform: scale(0.67);
-      -o-transform-origin: 0 0;
-      -webkit-transform: scale(0.67);
-      -webkit-transform-origin: 0 0;
+      transform: none;
+      width: 100%;
+      overflow-x: hidden;
   }
 
-  /* Adjust container widths */
-  .container, main, #products, .product-grid {
-      width: 149.25373134328358%; /* 100 / 0.67 */
-      max-width: none;
+  /* Header fixes */
+  header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      width: 100%;
+      padding: 0.5rem;
   }
 
-  /* Adjust footer */
+  nav {
+      padding: 0;
+  }
+
+  .logo-image {
+      height: 60px;
+      width: auto;
+  }
+
+  nav ul {
+      margin: 0;
+      padding: 0;
+  }
+
+  nav ul li {
+      margin: 0 10px;
+  }
+
+  nav ul li a {
+      font-size: 14px;
+  }
+
+  /* Home section fixes */
+  #home {
+      margin-top: 0;
+      padding: 4rem 1rem;
+      min-height: auto;
+  }
+
+  #home h1 {
+      font-size: 24px;
+      margin-bottom: 0.5rem;
+  }
+
+  #home p {
+      font-size: 14px;
+      margin-bottom: 1rem;
+  }
+
+  .cta-button {
+      padding: 0.6rem 1.5rem;
+      font-size: 14px;
+  }
+
+  /* Products section fixes */
+  #products {
+      margin: 2rem auto;
+      padding: 0 1rem;
+  }
+
+  #products h2 {
+      font-size: 20px;
+      margin-bottom: 1rem;
+  }
+
+  .product-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      padding: 10px;
+  }
+
+  .product-card {
+      padding: 0.5rem;
+      margin: 0;
+  }
+
+  .product-image {
+      height: 120px; /* Smaller height to fit better in the 2-column layout */
+  }
+
+  .product-card h3 {
+      font-size: 12px;
+      margin-bottom: 0.5rem;
+  }
+
+  .product-card p {
+      font-size: 11px;
+  }
+
+  .add-to-cart {
+      padding: 0.4rem 0.8rem;
+      font-size: 11px;
+  }
+
+  /* Footer fixes */
   footer {
-      width: 149.25373134328358%;
-      max-width: none;
-      box-sizing: border-box;
+      margin-top: 2rem;
+      padding: 1rem;
   }
 
-  /* Ensure text doesn't get too small */
-  body, p, a, span, button {
-      font-size: 16px;
+  .footer-logo-image {
+      height: 60px;
   }
 
-  h1 {
-      font-size: 2.5em;
+  .social-icon svg {
+      width: 20px;
+      height: 20px;
   }
 
-  h2 {
-      font-size: 2em;
+  .copyright {
+      font-size: 12px;
   }
 }
 
-/* For even smaller screens */
+/* Extra small devices */
 @media screen and (max-width: 480px) {
-  body {
-      zoom: 0.57;
-      -moz-transform: scale(0.57);
-      -moz-transform-origin: 0 0;
-      -o-transform: scale(0.57);
-      -o-transform-origin: 0 0;
-      -webkit-transform: scale(0.57);
-      -webkit-transform-origin: 0 0;
+  .product-grid {
+      grid-template-columns: repeat(2, 1fr); /* Keep 2 columns */
+      gap: 8px;
+      padding: 8px;
   }
 
-  .container, main, #products, .product-grid, footer {
-      width: 175.43859649122806%; /* 100 / 0.57 */
+  .product-card {
+      padding: 0.4rem;
+  }
+
+  .product-image {
+      height: 100px; /* Even smaller height for very small screens */
+  }
+
+  .product-card h3 {
+      font-size: 11px;
+      margin-bottom: 0.3rem;
+  }
+
+  .product-card p {
+      font-size: 10px;
+      margin-bottom: 0.2rem;
+  }
+
+  .add-to-cart {
+      padding: 0.3rem 0.6rem;
+      font-size: 10px;
   }
 }
