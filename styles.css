@@ -1788,6 +1788,7 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16rem;
 }
 
 .price-row .label {
