@@ -57,25 +57,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const total = subtotal - discount + (shippingFee !== "-" ? shippingFee : 0)
 
     cartTotalElement.innerHTML = `
-            <div class="total-list">
-                <div class="price-row">
-                    <span class="label">Subtotal:</span>
-                    <span class="value">RM ${subtotal.toFixed(2)}</span>
-                </div>
-                <div class="price-row">
-                    <span class="label">Shipping Fee:</span>
-                    <span class="value">${shippingFee === "-" ? "-" : `RM ${shippingFee.toFixed(2)}`}</span>
-                </div>
-                <div class="price-row">
-                    <span class="label">Discount:</span>
-                    <span class="value">${discount > 0 ? `RM ${discount.toFixed(2)}` : "-"}</span>
-                </div>
-                <div class="price-row">
-                    <span class="label">Total:</span>
-                    <span class="value">RM ${total.toFixed(2)}</span>
-                </div>
-            </div>
-        `
+  <div class="total-list">
+    <div class="price-row">
+      <span class="label">Subtotal:</span>
+      <span class="value">RM ${subtotal.toFixed(2)}</span>
+    </div>
+    <div class="price-row">
+      <span class="label">Shipping Fee:</span>
+      <span class="value">${shippingFee === "-" ? "-" : `RM ${shippingFee.toFixed(2)}`}</span>
+    </div>
+    <div class="price-row">
+      <span class="label">Discount:</span>
+      <span class="value">${discount > 0 ? `RM ${discount.toFixed(2)}` : "-"}</span>
+    </div>
+    <div class="price-row">
+      <span class="label">Total:</span>
+      <span class="value">RM ${total.toFixed(2)}</span>
+    </div>
+  </div>
+`
   }
 
   // Function to create a hidden form to submit order details
