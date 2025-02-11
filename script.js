@@ -1,20 +1,14 @@
-// Sample product data with image URLs and stock status
-const products = [
-  { id: 1, name: "Premium Taekwondo Uniform", price: 329.99, image: "Taekwondo Uniform.jpg", inStock: true },
-  { id: 2, name: "Professional Sparring Gear Set", price: 619.99, image: "Sparring Gear Set.jpg", inStock: true },
-  { id: 3, name: "Advanced Training Pads", price: 249.99, image: "Training Pad.jpg", inStock: false },
-  { id: 4, name: "Competition-Grade Belt", price: 104.99, image: "Taekwondo Belt.jpeg", inStock: true },
-  { id: 5, name: "Competition-Grade Belt", price: 104.99, image: "Taekwondo Belt.jpeg", inStock: false },
-  { id: 6, name: "Competition-Grade Belt", price: 104.99, image: "Taekwondo Belt.jpeg", inStock: true },
-  { id: 7, name: "Competition-Grade Belt", price: 104.99, image: "Taekwondo Belt.jpeg", inStock: true },
-  { id: 8, name: "Competition-Grade Belt", price: 104.99, image: "Taekwondo Belt.jpeg", inStock: false },
-  { id: 9, name: "Competition-Grade Belt", price: 104.99, image: "Taekwondo Belt.jpeg", inStock: false },
-  { id: 10, name: "Competition-Grade Belt", price: 104.99, image: "Taekwondo Belt.jpeg", inStock: true },
-  { id: 11, name: "Competition-Grade Belt", price: 104.99, image: "Taekwondo Belt.jpeg", inStock: false },
-  { id: 12, name: "Competition-Grade Belt", price: 104.99, image: "Taekwondo Belt.jpeg", inStock: true },
-]
+let products = [];
+let cart = [];
 
-let cart = []
+// Fetch products from products.json
+fetch('products.json')
+  .then(response => response.json())
+  .then(data => {
+    products = data;
+    renderProducts();
+  })
+  .catch(error => console.error('Error loading products:', error));
 
 // Function to create product cards
 function createProductCard(product) {
@@ -22,7 +16,7 @@ function createProductCard(product) {
   card.classList.add("product-card")
   card.innerHTML = `
     <a href="product-detail.html?id=${product.id}" class="product-link">
-        <img src="${product.image}" alt="${product.name}" class="product-image">
+        <img src="${product.thumbnail}" alt="${product.name}" class="product-image">
         <div class="product-details">
             <h3 class="product-name">${product.name}</h3>
             <p class="product-price">RM${product.price.toFixed(2)}</p>
@@ -42,6 +36,7 @@ function createProductCard(product) {
 function renderProducts() {
   const productGrid = document.getElementById("productGrid")
   if (productGrid) {
+    productGrid.innerHTML = ''; // Clear existing content
     products.forEach((product) => {
       const card = createProductCard(product)
       productGrid.appendChild(card)
@@ -181,7 +176,7 @@ function updateCartModal() {
     const itemElement = document.createElement("div")
     itemElement.classList.add("cart-item")
     itemElement.innerHTML = `
-      <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+      <img src="${item.thumbnail}" alt="${item.name}" class="cart-item-image">
       <div class="cart-item-details">
         <h3>${item.name}</h3>
         <p class="stock-status ${item.inStock ? "in-stock" : "out-of-stock"}">
@@ -247,11 +242,6 @@ document.getElementById("cartIcon").addEventListener("click", (e) => {
   openCartModal()
 })
 
-// Event listeners for quantity changes and item removal in cart modal
-//This section is removed as the functionality is now handled within the updated updateCartModal function.
-
-// Handle direct quantity input in cart modal
-//This section is removed as the functionality is now handled within the updated updateCartModal function.
 
 // Smooth scroll for navigation links
 document.querySelectorAll("nav ul li a").forEach((anchor) => {
@@ -315,7 +305,6 @@ window.addEventListener("scroll", setActivePage)
 // Initialize page
 function initPage() {
   createCartModal()
-  renderProducts()
   setActivePage()
   cart = JSON.parse(localStorage.getItem("cart")) || []
   updateCartCount()
@@ -331,4 +320,3 @@ document.addEventListener("click", (e) => {
     closeCartModal()
   }
 })
-

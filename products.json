@@ -1,0 +1,314 @@
+[
+  {
+    "id": 1,
+    "name": "Premium Taekwondo Uniform",
+    "price": 329.99,
+    "thumbnail": "Taekwondo Uniform.jpg",
+    "inStock": false,
+    "images": [
+      "Taekwondo Uniform.jpg",
+      "Taekwondo Uniform.jpg",
+      "Taekwondo Uniform.jpg",
+      "Taekwondo Uniform.jpg"
+    ],
+    "description": "Experience the ultimate in Taekwondo training with our Premium Taekwondo Uniform. This high-quality dobok is designed for both comfort and durability, ensuring you can focus on your technique without distraction.",
+    "features": [
+      "Made from high-quality, breathable fabric",
+      "Reinforced stitching for longevity",
+      "Designed for optimal range of motion",
+      "Official World Taekwondo Federation approved"
+    ],
+    "specifications": [
+      "Material: 65% polyester, 35% cotton",
+      "Available sizes: 000 to 7",
+      "Color: White",
+      "Includes both jacket and pants"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Professional Sparring Gear Set",
+    "price": 619.99,
+    "thumbnail": "Sparring Gear Set.jpg",
+    "inStock": false,
+    "images": [
+      "Sparring Gear Set.jpg",
+      "Sparring Gear Set.jpg",
+      "Sparring Gear Set.jpg",
+      "Sparring Gear Set.jpg"
+    ],
+    "description": "Elevate your sparring sessions with our Professional Sparring Gear Set. This comprehensive set provides maximum protection without compromising on mobility, allowing you to train and compete with confidence.",
+    "features": [
+      "Full-body protection set",
+      "Lightweight and flexible design",
+      "Shock-absorbing foam padding",
+      "Easy to clean and maintain"
+    ],
+    "specifications": [
+      "Includes: Headgear, Chest Protector, Arm & Shin Guards, Gloves, Foot Protectors",
+      "Material: High-density EVA foam with polyurethane coating",
+      "Available sizes: XS to XL",
+      "Meets or exceeds WTF and Olympic standards"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Advanced Training Pads",
+    "price": 249.99,
+    "thumbnail": "Training Pad.jpg",
+    "inStock": false,
+    "images": [
+      "Training-Pad-1.jpg",
+      "Training-Pad-2.jpg",
+      "Training-Pad-3.jpg",
+      "Training-Pad-4.jpg"
+    ],
+    "description": "Enhance your training with our Advanced Training Pads. These durable pads are designed to withstand powerful kicks and punches, providing the perfect target for honing your techniques.",
+    "features": [
+      "High-density foam core for shock absorption",
+      "Reinforced handles for secure grip",
+      "Curved design for optimal impact distribution",
+      "Suitable for both solo and partner training"
+    ],
+    "specifications": [
+      "Material: Synthetic leather exterior with high-density foam core",
+      "Dimensions: 40cm x 20cm x 10cm",
+      "Weight: 1.2 kg",
+      "Available colors: Black, Red, Blue"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Taekwondo Belt",
+    "price": 249.99,
+    "thumbnail": "Taekwondo Belt.jpeg",
+    "inStock": false,
+    "images": [
+      "Taekwondo Belt.jpeg",
+      "Taekwondo Belt.jpeg",
+      "Taekwondo Belt.jpeg",
+      "Taekwondo Belt.jpeg"
+    ],
+    "description": "Enhance your training with our Advanced Training Pads. These durable pads are designed to withstand powerful kicks and punches, providing the perfect target for honing your techniques.",
+    "features": [
+      "High-density foam core for shock absorption",
+      "Reinforced handles for secure grip",
+      "Curved design for optimal impact distribution",
+      "Suitable for both solo and partner training"
+    ],
+    "specifications": [
+      "Material: Synthetic leather exterior with high-density foam core",
+      "Dimensions: 40cm x 20cm x 10cm",
+      "Weight: 1.2 kg",
+      "Available colors: Black, Red, Blue"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Taekwondo Belt",
+    "price": 249.99,
+    "thumbnail": "Taekwondo Belt.jpeg",
+    "inStock": false,
+    "images": [
+      "Taekwondo Belt.jpeg",
+      "Taekwondo Belt.jpeg",
+      "Taekwondo Belt.jpeg",
+      "Taekwondo Belt.jpeg"
+    ],
+    "description": "Enhance your training with our Advanced Training Pads. These durable pads are designed to withstand powerful kicks and punches, providing the perfect target for honing your techniques.",
+    "features": [
+      "High-density foam core for shock absorption",
+      "Reinforced handles for secure grip",
+      "Curved design for optimal impact distribution",
+      "Suitable for both solo and partner training"
+    ],
+    "specifications": [
+      "Material: Synthetic leather exterior with high-density foam core",
+      "Dimensions: 40cm x 20cm x 10cm",
+      "Weight: 1.2 kg",
+      "Available colors: Black, Red, Blue"
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Taekwondo Belt",
+    "price": 249.99,
+    "thumbnail": "Taekwondo Belt.jpeg",
+    "inStock": false,
+    "images": [
+      "Taekwondo Belt.jpeg",
+      "Taekwondo Belt.jpeg",
+      "Taekwondo Belt.jpeg",
+      "Taekwondo Belt.jpeg"
+    ],
+    "description": "Enhance your training with our Advanced Training Pads. These durable pads are designed to withstand powerful kicks and punches, providing the perfect target for honing your techniques.",
+    "features": [
+      "High-density foam core for shock absorption",
+      "Reinforced handles for secure grip",
+      "Curved design for optimal impact distribution",
+      "Suitable for both solo and partner training"
+    ],
+    "specifications": [
+      "Material: Synthetic leather exterior with high-density foam core",
+      "Dimensions: 40cm x 20cm x 10cm",
+      "Weight: 1.2 kg",
+      "Available colors: Black, Red, Blue"
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Taekwondo Belt",
+    "price": 249.99,
+    "thumbnail": "Taekwondo Belt.jpeg",
+    "inStock": false,
+    "images": [
+      "Taekwondo Belt.jpeg",
+      "Taekwondo Belt.jpeg",
+      "Taekwondo Belt.jpeg",
+      "Taekwondo Belt.jpeg"
+    ],
+    "description": "Enhance your training with our Advanced Training Pads. These durable pads are designed to withstand powerful kicks and punches, providing the perfect target for honing your techniques.",
+    "features": [
+      "High-density foam core for shock absorption",
+      "Reinforced handles for secure grip",
+      "Curved design for optimal impact distribution",
+      "Suitable for both solo and partner training"
+    ],
+    "specifications": [
+      "Material: Synthetic leather exterior with high-density foam core",
+      "Dimensions: 40cm x 20cm x 10cm",
+      "Weight: 1.2 kg",
+      "Available colors: Black, Red, Blue"
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Taekwondo Belt",
+    "price": 249.99,
+    "thumbnail": "Taekwondo Belt.jpeg",
+    "inStock": false,
+    "images": [
+      "Taekwondo Belt.jpeg",
+      "Taekwondo Belt.jpeg",
+      "Taekwondo Belt.jpeg",
+      "Taekwondo Belt.jpeg"
+    ],
+    "description": "Enhance your training with our Advanced Training Pads. These durable pads are designed to withstand powerful kicks and punches, providing the perfect target for honing your techniques.",
+    "features": [
+      "High-density foam core for shock absorption",
+      "Reinforced handles for secure grip",
+      "Curved design for optimal impact distribution",
+      "Suitable for both solo and partner training"
+    ],
+    "specifications": [
+      "Material: Synthetic leather exterior with high-density foam core",
+      "Dimensions: 40cm x 20cm x 10cm",
+      "Weight: 1.2 kg",
+      "Available colors: Black, Red, Blue"
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Taekwondo Belt",
+    "price": 249.99,
+    "thumbnail": "Taekwondo Belt.jpeg",
+    "inStock": false,
+    "images": [
+      "Taekwondo Belt.jpeg",
+      "Taekwondo Belt.jpeg",
+      "Taekwondo Belt.jpeg",
+      "Taekwondo Belt.jpeg"
+    ],
+    "description": "Enhance your training with our Advanced Training Pads. These durable pads are designed to withstand powerful kicks and punches, providing the perfect target for honing your techniques.",
+    "features": [
+      "High-density foam core for shock absorption",
+      "Reinforced handles for secure grip",
+      "Curved design for optimal impact distribution",
+      "Suitable for both solo and partner training"
+    ],
+    "specifications": [
+      "Material: Synthetic leather exterior with high-density foam core",
+      "Dimensions: 40cm x 20cm x 10cm",
+      "Weight: 1.2 kg",
+      "Available colors: Black, Red, Blue"
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Taekwondo Belt",
+    "price": 249.99,
+    "thumbnail": "Taekwondo Belt.jpeg",
+    "inStock": false,
+    "images": [
+      "Taekwondo Belt.jpeg",
+      "Taekwondo Belt.jpeg",
+      "Taekwondo Belt.jpeg",
+      "Taekwondo Belt.jpeg"
+    ],
+    "description": "Enhance your training with our Advanced Training Pads. These durable pads are designed to withstand powerful kicks and punches, providing the perfect target for honing your techniques.",
+    "features": [
+      "High-density foam core for shock absorption",
+      "Reinforced handles for secure grip",
+      "Curved design for optimal impact distribution",
+      "Suitable for both solo and partner training"
+    ],
+    "specifications": [
+      "Material: Synthetic leather exterior with high-density foam core",
+      "Dimensions: 40cm x 20cm x 10cm",
+      "Weight: 1.2 kg",
+      "Available colors: Black, Red, Blue"
+    ]
+  },
+  {
+    "id": 11,
+    "name": "Taekwondo Belt",
+    "price": 249.99,
+    "thumbnail": "Taekwondo Belt.jpeg",
+    "inStock": false,
+    "images": [
+      "Taekwondo Belt.jpeg",
+      "Taekwondo Belt.jpeg",
+      "Taekwondo Belt.jpeg",
+      "Taekwondo Belt.jpeg"
+    ],
+    "description": "Enhance your training with our Advanced Training Pads. These durable pads are designed to withstand powerful kicks and punches, providing the perfect target for honing your techniques.",
+    "features": [
+      "High-density foam core for shock absorption",
+      "Reinforced handles for secure grip",
+      "Curved design for optimal impact distribution",
+      "Suitable for both solo and partner training"
+    ],
+    "specifications": [
+      "Material: Synthetic leather exterior with high-density foam core",
+      "Dimensions: 40cm x 20cm x 10cm",
+      "Weight: 1.2 kg",
+      "Available colors: Black, Red, Blue"
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Taekwondo Belt",
+    "price": 249.99,
+    "thumbnail": "Taekwondo Belt.jpeg",
+    "inStock": false,
+    "images": [
+      "Taekwondo Belt.jpeg",
+      "Taekwondo Belt.jpeg",
+      "Taekwondo Belt.jpeg",
+      "Taekwondo Belt.jpeg"
+    ],
+    "description": "Enhance your training with our Advanced Training Pads. These durable pads are designed to withstand powerful kicks and punches, providing the perfect target for honing your techniques.",
+    "features": [
+      "High-density foam core for shock absorption",
+      "Reinforced handles for secure grip",
+      "Curved design for optimal impact distribution",
+      "Suitable for both solo and partner training"
+    ],
+    "specifications": [
+      "Material: Synthetic leather exterior with high-density foam core",
+      "Dimensions: 40cm x 20cm x 10cm",
+      "Weight: 1.2 kg",
+      "Available colors: Black, Red, Blue"
+    ]
+  }
+]
