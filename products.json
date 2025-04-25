@@ -1,15 +1,13 @@
 [
   {
     "id": 1,
-    "name": "Premium Taekwondo Uniform",
+    "name": "Taekwondo Uniform",
     "price": 329.99,
-    "thumbnail": "Taekwondo Uniform.jpg",
+    "thumbnail": "uniform1.jpeg",
     "inStock": false,
     "images": [
-      "Taekwondo Uniform.jpg",
-      "Taekwondo Uniform.jpg",
-      "Taekwondo Uniform.jpg",
-      "Taekwondo Uniform.jpg"
+      "uniform1.jpeg",
+      "uniform2.jpeg"
     ],
     "description": "Experience the ultimate in Taekwondo training with our Premium Taekwondo Uniform. This high-quality dobok is designed for both comfort and durability, ensuring you can focus on your technique without distraction.",
     "features": [
@@ -27,15 +25,12 @@
   },
   {
     "id": 2,
-    "name": "Professional Sparring Gear Set",
+    "name": "Arm Guard",
     "price": 619.99,
-    "thumbnail": "Sparring Gear Set.jpg",
+    "thumbnail": "arm guard1.jpeg",
     "inStock": false,
     "images": [
-      "Sparring Gear Set.jpg",
-      "Sparring Gear Set.jpg",
-      "Sparring Gear Set.jpg",
-      "Sparring Gear Set.jpg"
+      "arm guard1.jpeg"
     ],
     "description": "Elevate your sparring sessions with our Professional Sparring Gear Set. This comprehensive set provides maximum protection without compromising on mobility, allowing you to train and compete with confidence.",
     "features": [
@@ -53,15 +48,14 @@
   },
   {
     "id": 3,
-    "name": "Advanced Training Pads",
+    "name": "Hand Gloves",
     "price": 249.99,
-    "thumbnail": "Training Pad.jpg",
+    "thumbnail": "hand glove1.jpeg",
     "inStock": false,
     "images": [
-      "Training-Pad-1.jpg",
-      "Training-Pad-2.jpg",
-      "Training-Pad-3.jpg",
-      "Training-Pad-4.jpg"
+      "hand glove1.jpeg",
+      "hand glove2.jpeg",
+      "hand glove3.mp4"
     ],
     "description": "Enhance your training with our Advanced Training Pads. These durable pads are designed to withstand powerful kicks and punches, providing the perfect target for honing your techniques.",
     "features": [
@@ -79,15 +73,13 @@
   },
   {
     "id": 4,
-    "name": "Taekwondo Belt",
+    "name": "MT Taekwondo Green T-shirt",
     "price": 249.99,
-    "thumbnail": "Taekwondo Belt.jpeg",
+    "thumbnail": "green mt t-shirt2.jpeg",
     "inStock": false,
     "images": [
-      "Taekwondo Belt.jpeg",
-      "Taekwondo Belt.jpeg",
-      "Taekwondo Belt.jpeg",
-      "Taekwondo Belt.jpeg"
+      "green mt t-shirt1.jpeg",
+      "green mt t-shirt2.jpeg"
     ],
     "description": "Enhance your training with our Advanced Training Pads. These durable pads are designed to withstand powerful kicks and punches, providing the perfect target for honing your techniques.",
     "features": [
