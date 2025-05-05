@@ -16,18 +16,21 @@ document.addEventListener("DOMContentLoaded", () => {
     cartItemsContainer.innerHTML = ""
     let subtotal = 0
     const shippingFee = "-"
+    const adminFee = "-" // Set administration fee to "-"
 
     if (cartItems.length === 0) {
       cartItemsContainer.innerHTML = '<p class="empty-cart">Your cart is empty.</p>'
-      updateTotalDisplay(0, shippingFee, 0)
+      updateTotalDisplay(0, shippingFee, adminFee, 0)
       return
     }
 
     cartItems.forEach((item, index) => {
       const itemElement = document.createElement("div")
       itemElement.classList.add("checkout-cart-item")
+      
+      // Fix image reference - use thumbnail property instead of image
       itemElement.innerHTML = `
-                <img src="${item.image}" alt="${item.name}">
+                <img src="${item.thumbnail}" alt="${item.name}">
                 <div class="checkout-item-details">
                     <span class="checkout-item-name">${item.name}</span>
                     <span class="checkout-item-stock ${item.inStock ? "in-stock" : "out-of-stock"}">
@@ -50,11 +53,16 @@ document.addEventListener("DOMContentLoaded", () => {
       subtotal += item.price * item.quantity
     })
 
-    updateTotalDisplay(subtotal, shippingFee, appliedDiscount)
+    updateTotalDisplay(subtotal, shippingFee, adminFee, appliedDiscount)
   }
 
-  function updateTotalDisplay(subtotal, shippingFee, discount) {
-    const total = subtotal - discount + (shippingFee !== "-" ? shippingFee : 0)
+  function updateTotalDisplay(subtotal, shippingFee, adminFee, discount) {
+    // For total calculation, treat "-" as 0
+    const adminFeeValue = adminFee === "-" ? 0 : adminFee
+    const shippingFeeValue = shippingFee === "-" ? 0 : shippingFee
+    
+    // Calculate total with all components
+    const total = subtotal - discount + shippingFeeValue + adminFeeValue
 
     cartTotalElement.innerHTML = `
   <div class="total-list">
@@ -64,7 +72,11 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
     <div class="price-row">
       <span class="label">Shipping Fee:</span>
-      <span class="value">${shippingFee === "-" ? "-" : `RM ${shippingFee.toFixed(2)}`}</span>
+      <span class="value">${shippingFee}</span>
+    </div>
+    <div class="price-row">
+      <span class="label">Administration Fee:</span>
+      <span class="value">${adminFee}</span>
     </div>
     <div class="price-row">
       <span class="label">Discount:</span>
@@ -84,8 +96,10 @@ document.addEventListener("DOMContentLoaded", () => {
       .map((item) => `${item.name} x${item.quantity} - RM${(item.price * item.quantity).toFixed(2)}`)
       .join("\n")
 
-    const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0) - appliedDiscount
-    const orderSummary = `${orderDetails}\n\nDiscount: RM${appliedDiscount.toFixed(2)}\nTotal: RM${total.toFixed(2)}`
+    const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
+    const total = subtotal - appliedDiscount
+    
+    const orderSummary = `${orderDetails}\n\nSubtotal: RM${subtotal.toFixed(2)}\nShipping Fee: -\nAdministration Fee: -\nDiscount: ${appliedDiscount > 0 ? `RM${appliedDiscount.toFixed(2)}` : "-"}\nTotal: RM${total.toFixed(2)}`
 
     // Create a form that will open in a new tab
     const form = document.createElement("form")
