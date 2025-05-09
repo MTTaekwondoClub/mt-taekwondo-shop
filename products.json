@@ -127,5 +127,24 @@
       "Material: Hard rubber protect for groin part",
       "Available sizes: XS to XL"
     ]
+  },
+  {
+    "id": 7,
+    "name": "Mouth Guard",
+    "price": 10.00,
+    "thumbnail": "mouth guard1.jpg",
+    "inStock": true,
+    "images": [
+      "mouth guard1.jpg",
+      "mouth guard2.mp4"
+    ],
+    "description": "<b><i>For the first time use: Put the gum shield into 90'C boiled water for 20 sec, then put it into your mouth upper teeth in the middle, bite it tight for 30 sec (but do not bite too deep). Finally, put it into cold water. Try again if is not fit.</i></b>",
+    "features": [
+      "Easy to clean and maintain"
+    ],
+    "specifications": [
+      "Material: High-quality gum with no poisonous",
+      "Available sizes: Adult or Kid"
+    ]
   }
 ]
