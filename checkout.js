@@ -101,29 +101,237 @@ document.addEventListener("DOMContentLoaded", () => {
     
     const orderSummary = `${orderDetails}\n\nSubtotal: RM${subtotal.toFixed(2)}\nShipping Fee: -\nAdministration Fee: -\nDiscount: ${appliedDiscount > 0 ? `RM${appliedDiscount.toFixed(2)}` : "-"}\nTotal: RM${total.toFixed(2)}`
 
-    // Create a form that will open in a new tab
-    const form = document.createElement("form")
-    form.method = "GET"
-    form.action =
-      "https://docs.google.com/forms/d/e/1FAIpQLSfcv5cmc3WlOalEyLaa3muEue-5-IV_xbe55plzAIc7s_Wc-w/formResponse"
-    form.target = "_blank"
+    // Store order details in localStorage before redirecting
+    localStorage.setItem("pendingOrder", orderSummary);
+    
+    // Create a confirmation dialog
+    showOrderConfirmation(orderSummary);
+  }
 
-    // Add the order details as a hidden input
-    const input = document.createElement("input")
-    input.type = "hidden"
-    input.name = "entry.785150090"
-    input.value = orderSummary
-
-    form.appendChild(input)
-    document.body.appendChild(form)
-
-    // Submit the form
-    form.submit()
-    document.body.removeChild(form)
-
-    // Clear cart and redirect after submission
-    localStorage.removeItem("cart")
-    window.location.href = "index.html"
+  // Function to show order confirmation dialog
+  function showOrderConfirmation(orderSummary) {
+    // Format the order summary for better display
+    const formattedSummary = formatOrderSummary(orderSummary);
+    
+    // Create overlay
+    const overlay = document.createElement("div");
+    overlay.className = "order-overlay";
+    overlay.style.position = "fixed";
+    overlay.style.top = "0";
+    overlay.style.left = "0";
+    overlay.style.width = "100%";
+    overlay.style.height = "100%";
+    overlay.style.backgroundColor = "rgba(0, 0, 0, 0.7)";
+    overlay.style.zIndex = "1000";
+    overlay.style.display = "flex";
+    overlay.style.justifyContent = "center";
+    overlay.style.alignItems = "center";
+    overlay.style.backdropFilter = "blur(5px)";
+    
+    // Create confirmation dialog
+    const dialog = document.createElement("div");
+    dialog.className = "order-confirmation-dialog";
+    dialog.style.backgroundColor = "white";
+    dialog.style.padding = "30px";
+    dialog.style.borderRadius = "12px";
+    dialog.style.maxWidth = "90%";
+    dialog.style.width = "500px";
+    dialog.style.maxHeight = "80vh";
+    dialog.style.overflow = "auto";
+    dialog.style.boxShadow = "0 10px 25px rgba(0, 0, 0, 0.2)";
+    dialog.style.animation = "fadeIn 0.3s ease-out";
+    
+    dialog.innerHTML = `
+      <style>
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(-20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .order-title {
+          text-align: center;
+          margin-bottom: 20px;
+          color: #000;
+          font-size: 24px;
+          font-weight: bold;
+          position: relative;
+          padding-bottom: 15px;
+        }
+        
+        .order-title:after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 60px;
+          height: 3px;
+          background-color: #ffd700;
+        }
+        
+        .order-subtitle {
+          text-align: center;
+          margin-bottom: 25px;
+          color: #666;
+          font-size: 16px;
+        }
+        
+        .order-summary {
+          background-color: #f9f9f9;
+          padding: 20px;
+          border-radius: 8px;
+          margin-bottom: 25px;
+          border: 1px solid #eee;
+        }
+        
+        .order-item {
+          padding: 10px 0;
+          border-bottom: 1px solid #eee;
+          font-size: 14px;
+        }
+        
+        .order-item:last-child {
+          border-bottom: none;
+        }
+        
+        .order-total-section {
+          margin-top: 15px;
+          padding-top: 15px;
+          border-top: 2px dashed #ddd;
+        }
+        
+        .order-total-row {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 8px;
+          font-size: 14px;
+        }
+        
+        .order-total-row.final {
+          font-weight: bold;
+          font-size: 16px;
+          margin-top: 10px;
+          padding-top: 10px;
+          border-top: 2px solid #ddd;
+        }
+        
+        .button-container {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 20px;
+        }
+        
+        .cancel-btn {
+          padding: 12px 20px;
+          background-color: #f1f1f1;
+          color: #333;
+          border: none;
+          border-radius: 30px;
+          cursor: pointer;
+          font-weight: 600;
+          transition: all 0.3s;
+          width: 45%;
+        }
+        
+        .cancel-btn:hover {
+          background-color: #e0e0e0;
+        }
+        
+        .confirm-btn {
+          padding: 12px 20px;
+          background-color: #000;
+          color: white;
+          border: none;
+          border-radius: 30px;
+          cursor: pointer;
+          font-weight: 600;
+          transition: all 0.3s;
+          width: 45%;
+        }
+        
+        .confirm-btn:hover {
+          background-color: #333;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+      </style>
+      
+      <h2 class="order-title">Order Confirmation</h2>
+      <p class="order-subtitle">Please review your order details before submitting</p>
+      
+      <div class="order-summary">
+        ${formattedSummary}
+      </div>
+      
+      <div class="button-container">
+        <button id="cancelOrder" class="cancel-btn">Cancel</button>
+        <button id="confirmOrder" class="confirm-btn">Confirm Order</button>
+      </div>
+    `;
+    
+    overlay.appendChild(dialog);
+    document.body.appendChild(overlay);
+    
+    // Add event listeners
+    document.getElementById("cancelOrder").addEventListener("click", () => {
+      document.body.removeChild(overlay);
+    });
+    
+    document.getElementById("confirmOrder").addEventListener("click", () => {
+      // Remove the dialog
+      document.body.removeChild(overlay);
+      
+      // Get the order summary from localStorage
+      const orderSummary = localStorage.getItem("pendingOrder");
+      
+      // Create the form URL with the order summary as a parameter
+      const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfcv5cmc3WlOalEyLaa3muEue-5-IV_xbe55plzAIc7s_Wc-w/viewform?usp=pp_url&entry.785150090=" + encodeURIComponent(orderSummary);
+      
+      // Open the form in the same window
+      window.location.href = formUrl;
+      
+      // Clear cart and pending order
+      localStorage.removeItem("cart");
+      localStorage.removeItem("pendingOrder");
+      
+      // Show a success message before redirecting
+      showPopupMessage("Order submitted successfully! Redirecting to form...");
+    });
+  }
+  
+  // Function to format the order summary for better display
+  function formatOrderSummary(orderSummary) {
+    // Split the summary into lines
+    const lines = orderSummary.split('\n');
+    
+    // Separate the items from the totals
+    const itemsEnd = lines.findIndex(line => line === '');
+    const items = lines.slice(0, itemsEnd);
+    const totals = lines.slice(itemsEnd + 1);
+    
+    // Format the items
+    const formattedItems = items.map(item => `<div class="order-item">${item}</div>`).join('');
+    
+    // Format the totals
+    const formattedTotals = totals.map((total, index) => {
+      const [label, value] = total.split(': ');
+      const isLast = index === totals.length - 1;
+      
+      return `
+        <div class="order-total-row ${isLast ? 'final' : ''}">
+          <span>${label}:</span>
+          <span>${value}</span>
+        </div>
+      `;
+    }).join('');
+    
+    // Combine everything
+    return `
+      ${formattedItems}
+      <div class="order-total-section">
+        ${formattedTotals}
+      </div>
+    `;
   }
 
   // Add submit button to the page
@@ -198,6 +406,15 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.removeChild(popup)
       }, 300)
     }, 3000)
+  }
+
+  // Check if there's a pending order after returning from form submission
+  if (localStorage.getItem("pendingOrder")) {
+    // Clear the pending order
+    localStorage.removeItem("pendingOrder");
+    
+    // Show a success message
+    showPopupMessage("Thank you for your order! We'll contact you soon.");
   }
 
   // Initial render
