@@ -1477,48 +1477,87 @@ video::-webkit-media-controls {
   align-items: center;
 }
 
-/* WhatsApp Floating Button Styles - Add this to your styles.css file */
-.whatsapp-float {
+/* WhatsApp Button with Chat Bubble CSS */
+.whatsapp-container {
   position: fixed;
-  width: 60px;
-  height: 60px;
   bottom: 20px;
   right: 20px;
-  background-color: #25d366;
-  color: #FFF;
-  border-radius: 50px;
-  text-align: center;
-  font-size: 30px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  z-index: 100;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-end;
+  z-index: 999;
+}
+
+.chat-bubble {
+  position: relative;
+  background-color: #f8faa0;
+  color: rgb(0, 0, 0);
+  padding: 10px 15px;
+  border-radius: 18px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  max-width: 220px;
+  text-align: left;
+}
+
+/* Chat bubble triangle */
+.chat-bubble:after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  right: 20px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #f8faa0;
+}
+
+#chat-text {
+  display: inline-block;
+  transition: opacity 0.5s ease;
+}
+
+.whatsapp-button {
+  display: flex;
   justify-content: center;
-  transition: all 0.3s;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  background-color: #25d366;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
 }
 
-.whatsapp-float:hover {
-  background-color: #20ba5a;
-  transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+.whatsapp-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
 }
 
-.whatsapp-float svg {
-  width: 30px;
-  height: 30px;
+.whatsapp-icon {
+  width: 35px;
+  height: 35px;
+  fill: white;
 }
 
-/* Make the button smaller on mobile */
-@media screen and (max-width: 768px) {
-  .whatsapp-float {
-    width: 50px;
-    height: 50px;
-    bottom: 15px;
-    right: 15px;
+/* For mobile devices */
+@media (max-width: 768px) {
+  .chat-bubble {
+    font-size: 12px;
+    max-width: 180px;
+    padding: 8px 12px;
   }
   
-  .whatsapp-float svg {
-    width: 25px;
-    height: 25px;
+  .whatsapp-button {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .whatsapp-icon {
+    width: 30px;
+    height: 30px;
   }
 }

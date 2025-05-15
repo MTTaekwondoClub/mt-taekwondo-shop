@@ -6,6 +6,12 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "index.html#products";
   });
 
+  // Create cart modal if it doesn't exist
+  createCartModal();
+
+  // Set up cart icon click handler
+  setupCartIconHandler();
+
   // Get product ID from URL parameters
   const urlParams = new URLSearchParams(window.location.search);
   const productId = Number.parseInt(urlParams.get("id"));
@@ -122,13 +128,13 @@ document.addEventListener("DOMContentLoaded", () => {
           console.log("Video element created");
 
           // Add click event to play/pause the video
-    mainVideo.addEventListener('click', function() {
-      if (mainVideo.paused) {
-        mainVideo.play();
-      } else {
-        mainVideo.pause();
-      }
-    });
+          mainVideo.addEventListener('click', function() {
+            if (mainVideo.paused) {
+              mainVideo.play();
+            } else {
+              mainVideo.pause();
+            }
+          });
         } else {
           // Create image element
           const mainImage = document.createElement('img');
@@ -190,18 +196,17 @@ document.addEventListener("DOMContentLoaded", () => {
           setMainMedia(media);
           document.querySelectorAll(".thumbnail").forEach((thumb) => thumb.classList.remove("active"));
           thumbnail.classList.add("active");
+          
+          // Auto-play if it's a video
+          if (isVideo) {
+            setTimeout(() => {
+              const mainVideo = document.getElementById("mainVideo");
+              if (mainVideo) {
+                mainVideo.play().catch(e => console.log("Auto-play prevented:", e));
+              }
+            }, 100); // Small delay to ensure the video is loaded
+          }
         });
-        
-    // Auto-play if it's a video
-    if (isVideo) {
-      setTimeout(() => {
-        const mainVideo = document.getElementById("mainVideo");
-        if (mainVideo) {
-          mainVideo.play().catch(e => console.log("Auto-play prevented:", e));
-        }
-      }, 100); // Small delay to ensure the video is loaded
-    }
-    ;
         
         thumbnailContainer.appendChild(thumbnail);
       });
@@ -441,6 +446,61 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+// Function to create cart modal if it doesn't exist
+function createCartModal() {
+  if (!document.querySelector('.cart-modal')) {
+    const cartModal = document.createElement('div');
+    cartModal.className = 'cart-modal';
+    cartModal.innerHTML = `
+      <div class="cart-modal-content">
+        <div class="cart-modal-header">
+          <h2>Your Cart</h2>
+          <button class="close-modal">&times;</button>
+        </div>
+        <div class="cart-items">
+          <!-- Cart items will be inserted here -->
+        </div>
+        <div class="cart-footer">
+          <div class="cart-total">Total: RM0.00</div>
+          <button class="checkout-btn">Checkout</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(cartModal);
+    
+    // Add event listener to close modal
+    const closeModal = cartModal.querySelector('.close-modal');
+    closeModal.addEventListener('click', function() {
+      cartModal.style.display = 'none';
+      document.body.classList.remove('blur-background');
+    });
+    
+    // Close modal when clicking outside
+    cartModal.addEventListener('click', function(e) {
+      if (e.target === cartModal) {
+        cartModal.style.display = 'none';
+        document.body.classList.remove('blur-background');
+      }
+    });
+  }
+}
+
+// Function to set up cart icon click handler
+function setupCartIconHandler() {
+  const cartIcon = document.getElementById("cartIcon");
+  if (cartIcon) {
+    cartIcon.addEventListener("click", function(e) {
+      e.preventDefault(); // Prevent default navigation
+      const cartModal = document.querySelector('.cart-modal');
+      if (cartModal) {
+        updateCartModal();
+        cartModal.style.display = 'flex';
+        document.body.classList.add('blur-background');
+      }
+    });
+  }
+}
+
 // Function to add product to cart
 function addToCart(productId, quantity) {
   // Get existing cart from localStorage
@@ -461,6 +521,7 @@ function addToCart(productId, quantity) {
             name: product.name,
             price: product.price,
             thumbnail: product.thumbnail,
+            image: product.thumbnail, // Add image property for checkout page compatibility
             inStock: product.inStock,
             quantity: quantity
           });
@@ -472,17 +533,124 @@ function addToCart(productId, quantity) {
         // Show notification
         showNotification(`${quantity} ${product.name}${quantity > 1 ? "s" : ""} added to cart!`);
         
-        // Update cart count if on the same page as the cart icon
-        const cartCount = document.querySelector(".cart-count");
-        if (cartCount) {
-          const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-          cartCount.textContent = totalItems;
-        }
+        // Update cart count
+        updateCartCount();
+        
+        // Update cart modal
+        updateCartModal();
       }
     })
     .catch(error => {
       console.error("Error adding to cart:", error);
     });
+}
+
+// Function to update cart count
+function updateCartCount() {
+  const cartCount = document.querySelector(".cart-count");
+  if (cartCount) {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    cartCount.textContent = totalItems;
+  }
+}
+
+// Function to update cart modal
+function updateCartModal() {
+  const cartItemsContainer = document.querySelector('.cart-items');
+  const cartTotalElement = document.querySelector('.cart-total');
+  const checkoutBtn = document.querySelector('.checkout-btn');
+
+  if (!cartItemsContainer || !cartTotalElement || !checkoutBtn) return;
+
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  if (cart.length === 0) {
+    cartItemsContainer.innerHTML = '<p>Your cart is empty.</p>';
+    cartTotalElement.textContent = 'Total: RM0.00';
+    checkoutBtn.disabled = true;
+    return;
+  }
+
+  let total = 0;
+  cartItemsContainer.innerHTML = '';
+
+  cart.forEach((item, index) => {
+    const itemTotal = item.price * item.quantity;
+    total += itemTotal;
+    
+    const cartItem = document.createElement('div');
+    cartItem.className = 'cart-item';
+    cartItem.innerHTML = `
+      <img src="${item.thumbnail}" alt="${item.name}" class="cart-item-image">
+      <div class="cart-item-details">
+        <h3>${item.name}</h3>
+        <span class="stock-status ${item.inStock ? 'in-stock' : 'out-of-stock'}">
+          ${item.inStock ? 'In Stock' : 'Out of Stock'}
+        </span>
+        <div class="quantity-controls">
+          <button class="quantity-btn minus" data-index="${index}">−</button>
+          <input type="number" value="${item.quantity}" min="1" max="99" class="quantity-input" data-index="${index}">
+          <button class="quantity-btn plus" data-index="${index}">+</button>
+        </div>
+      </div>
+      <span class="item-price">RM${itemTotal.toFixed(2)}</span>
+      <button class="delete-item" data-index="${index}">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+        </svg>
+      </button>
+    `;
+    
+    cartItemsContainer.appendChild(cartItem);
+  });
+
+  cartTotalElement.textContent = `Total: RM${total.toFixed(2)}`;
+  checkoutBtn.disabled = false;
+
+  // Add event listeners for quantity controls
+  document.querySelectorAll('.cart-item .quantity-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const index = Number.parseInt(this.getAttribute('data-index'));
+      if (this.classList.contains('plus')) {
+        cart[index].quantity = Math.min(99, cart[index].quantity + 1);
+      } else if (this.classList.contains('minus') && cart[index].quantity > 1) {
+        cart[index].quantity = Math.max(1, cart[index].quantity - 1);
+      }
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartModal();
+      updateCartCount();
+    });
+  });
+
+  // Add event listeners for quantity input
+  document.querySelectorAll('.cart-item .quantity-input').forEach(input => {
+    input.addEventListener('change', function() {
+      const index = Number.parseInt(this.getAttribute('data-index'));
+      let newQuantity = Number.parseInt(this.value);
+      newQuantity = Math.max(1, Math.min(99, newQuantity));
+      cart[index].quantity = newQuantity;
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartModal();
+      updateCartCount();
+    });
+  });
+
+  // Add event listeners for delete buttons
+  document.querySelectorAll('.cart-item .delete-item').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const index = Number.parseInt(this.getAttribute('data-index'));
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartModal();
+      updateCartCount();
+    });
+  });
+
+  // Add event listener for checkout button
+  checkoutBtn.addEventListener('click', function() {
+    window.location.href = 'checkout.html';
+  });
 }
 
 // Function to show notification
