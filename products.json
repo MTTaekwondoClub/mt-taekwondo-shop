@@ -65,7 +65,7 @@
   },
   {
     "id": 4,
-    "name": "MT Taekwondo Club T-shirt",
+    "name": "MT Taekwondo Club T-shirt (Standard Series)",
     "price": 32.00,
     "thumbnail": "green mt t-shirt2.jpeg",
     "inStock": true,
@@ -145,6 +145,28 @@
     "specifications": [
       "Material: High-quality gum with no poisonous",
       "Available sizes: Adult or Kid"
+    ]
+  },
+    {
+    "id": 8,
+    "name": "MT Taekwondo Club T-shirt (Fighter Series)",
+    "price": 48.00,
+    "thumbnail": "fighter series t shirt1.png",
+    "inStock": true,
+    "images": [
+      "fighter series t shirt1.png",
+      "fighter series t shirt2.png",
+      "fighter series t shirt3.mp4"
+    ],
+    "description": "",
+    "features": [
+      "Suitable for sports",
+      "Comfort to wear and easy to wash"
+    ],
+    "specifications": [
+      "Material: Micro-fibre ",
+      "Available colors: Dark Grey only",
+      "Available sizes: S to XL"
     ]
   }
 ]
