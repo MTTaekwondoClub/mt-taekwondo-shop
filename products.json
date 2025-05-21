@@ -2,33 +2,30 @@
   {
     "id": 1,
     "name": "Taekwondo Uniform (White Belt Included)",
-    "price": 135.00,
+    "price": 135.0,
     "thumbnail": "uniform1.jpeg",
     "inStock": true,
     "images": [
-      "uniform1.jpeg",
-      "uniform2.jpg"
-    ],
+      "uniform1.jpeg", 
+      "uniform2.jpg"],
     "description": "",
     "features": [
-      "Brand approved by World Taekwondo"
-    ],
+      "Brand approved by World Taekwondo"],
     "specifications": [
-      "Material: 65% Polyester, 35% Cotton",
-      "Available sizes: 110cm to 190cm",
-      "Colour: White"
-    ]
+      "Material: 65% Polyester, 35% Cotton", 
+      "Available sizes: 110cm to 190cm", 
+      "Colour: White"],
+    "category": "Uniform"
   },
   {
     "id": 2,
     "name": "Arm Protector",
-    "price": 40.00,
+    "price": 40.0,
     "thumbnail": "arm protector1.jpeg",
     "inStock": true,
     "images": [
-      "arm protector1.jpeg",
-      "arm protector2.png"
-    ],
+    "arm protector1.jpeg", 
+    "arm protector2.png"],
     "description": "",
     "features": [
       "Reduce the force from attack",
@@ -37,63 +34,59 @@
       "Easy to clean and maintain"
     ],
     "specifications": [
-      "Material: High-density EVA foam with polyurethane coating",
-      "Available sizes: XS to XL"
-    ]
+      "Material: High-density EVA foam with polyurethane coating", 
+      "Available sizes: XS to XL"],
+    "category": "Protection Equipments"
   },
   {
     "id": 3,
     "name": "Hand Gloves",
-    "price": 40.00,
+    "price": 40.0,
     "thumbnail": "hand glove1.jpeg",
     "inStock": true,
     "images": [
-      "hand glove1.jpeg",
-      "hand glove2.jpeg",
-      "hand glove3.mp4"
-    ],
+      "hand glove1.jpeg", 
+      "hand glove2.jpeg", 
+      "hand glove3.mp4"],
     "description": "",
     "features": [
-      "Fully protection for every fingers",
-      "Brand approved by World Taekwondo"
-    ],
+      "Fully protection for every fingers", 
+      "Brand approved by World Taekwondo"],
     "specifications": [
       "Material: Cotton material on the palm and EVA foam material on the top",
       "Available sizes: S to XL",
       "Available colors: White"
-    ]
+    ],
+    "category": "Protection Equipments"
   },
   {
     "id": 4,
     "name": "MT Taekwondo Club T-shirt (Standard Series)",
-    "price": 32.00,
+    "price": 32.0,
     "thumbnail": "green mt t-shirt2.jpeg",
     "inStock": true,
     "images": [
-      "green mt t-shirt1.jpeg",
-      "green mt t-shirt2.jpeg"
-    ],
+      "green mt t-shirt1.jpeg", 
+      "green mt t-shirt2.jpeg"],
     "description": "",
     "features": [
-      "Suitable for sports",
-      "Comfort to wear and easy to wash"
-    ],
+    "Suitable for sports", 
+    "Comfort to wear and easy to wash"],
     "specifications": [
-      "Material: Micro-fibre ",
-      "Available colors: Army Green only",
-      "Available sizes: S to XL"
-    ]
+      "Material: Micro-fibre ", 
+      "Available colors: Army Green only", 
+      "Available sizes: S to XL"],
+    "category": "MT Shop T-shirt"
   },
   {
     "id": 5,
     "name": "Shin Protector",
-    "price": 40.00,
+    "price": 40.0,
     "thumbnail": "shin protector1.png",
     "inStock": true,
     "images": [
-      "shin protector1.png",
-      "shin protector2.png"
-    ],
+      "shin protector1.png", 
+      "shin protector2.png"],
     "description": "",
     "features": [
       "Reduce the impact for leg crash",
@@ -102,21 +95,20 @@
       "Fully protection for the shin bone"
     ],
     "specifications": [
-      "Material: High-density EVA foam with polyurethane coating",
-      "Available sizes: XS to XL"
-    ]
+      "Material: High-density EVA foam with polyurethane coating", 
+      "Available sizes: XS to XL"],
+    "category": "Protection Equipments"
   },
   {
     "id": 6,
     "name": "Male Groin Protector",
-    "price": 50.00,
+    "price": 50.0,
     "thumbnail": "male groin protector1.png",
     "inStock": true,
     "images": [
-      "male groin protector1.png",
-      "male groin protector2.png",
-      "male groin protector3.mp4"
-    ],
+      "male groin protector1.png", 
+      "male groin protector2.png", 
+      "male groin protector3.mp4"],
     "description": "",
     "features": [
       "Brand approved by World Taekwondo",
@@ -124,49 +116,45 @@
       "Protection from lower abdomen to groin"
     ],
     "specifications": [
-      "Material: Hard rubber protect for groin part",
-      "Available sizes: XS to XL"
-    ]
+      "Material: Hard rubber protect for groin part", 
+      "Available sizes: XS to XL"],
+    "category": "Protection Equipments"
   },
   {
     "id": 7,
     "name": "Mouth Guard",
-    "price": 10.00,
+    "price": 10.0,
     "thumbnail": "mouth guard1.jpg",
     "inStock": true,
     "images": [
-      "mouth guard1.jpg",
-      "mouth guard2.mp4"
-    ],
+      "mouth guard1.jpg", 
+      "mouth guard2.mp4"],
     "description": "<b><i>For the first time use: Put the gum shield into 90'C boiled water for 20 sec, then put it into your mouth upper teeth in the middle, bite it tight for 30 sec (but do not bite too deep). Finally, put it into cold water. Try again if is not fit.</i></b>",
     "features": [
-      "Easy to clean and maintain"
-    ],
+      "Easy to clean and maintain"],
     "specifications": [
-      "Material: High-quality gum with no poisonous",
-      "Available sizes: Adult or Kid"
-    ]
+      "Material: High-quality gum with no poisonous", 
+      "Available sizes: Adult or Kid"],
+    "category": "Protection Equipments"
   },
-    {
+  {
     "id": 8,
     "name": "MT Taekwondo Club T-shirt (Fighter Series)",
-    "price": 48.00,
+    "price": 48.0,
     "thumbnail": "fighter series t shirt1.png",
     "inStock": true,
     "images": [
-      "fighter series t shirt1.png",
-      "fighter series t shirt2.png",
-      "fighter series t shirt3.mp4"
-    ],
+      "fighter series t shirt1.png", 
+      "fighter series t shirt2.png", 
+      "fighter series t shirt3.mp4"],
     "description": "",
     "features": [
-      "Suitable for sports",
-      "Comfort to wear and easy to wash"
-    ],
+      "Suitable for sports", 
+      "Comfort to wear and easy to wash"],
     "specifications": [
-      "Material: Micro-fibre ",
-      "Available colors: Dark Grey only",
-      "Available sizes: S to XL"
-    ]
+      "Material: Micro-fibre ", 
+      "Available colors: Dark Grey only", 
+      "Available sizes: S to XL"],
+    "category": "MT Shop T-shirt"
   }
 ]

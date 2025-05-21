@@ -19,6 +19,7 @@
           <ul>
               <li><a href="index.html#home">Home</a></li>
               <li><a href="index.html#products">Products</a></li>
+              <li><a href="b-stock.html">B-Stock</a></li>
           </ul>
           <div class="cart-icon" id="cartIcon">
               <span class="cart-count">0</span>
@@ -36,7 +37,60 @@
       </section>
 
       <section id="products">
-          <h2>Our Products</h2>
+          <!-- Category Section moved inside products section -->
+          <div class="category-container">
+              <h2>Shop by Category</h2>
+              <div class="category-icons">
+                  <div class="category-item active" data-category="All">
+                      <div class="category-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              <rect x="3" y="3" width="7" height="7"></rect>
+                              <rect x="14" y="3" width="7" height="7"></rect>
+                              <rect x="14" y="14" width="7" height="7"></rect>
+                              <rect x="3" y="14" width="7" height="7"></rect>
+                          </svg>
+                      </div>
+                      <span>All</span>
+                  </div>
+                  <div class="category-item" data-category="Uniform">
+                      <div class="category-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              <path d="M6.5 14.5V6.5L12 4L17.5 6.5V14.5"></path>
+                              <path d="M6.5 14.5H17.5"></path>
+                              <path d="M9 14.5V21H15V14.5"></path>
+                          </svg>
+                      </div>
+                      <span>Uniform</span>
+                  </div>
+                  <div class="category-item" data-category="Protection Equipments">
+                      <div class="category-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                          </svg>
+                      </div>
+                      <span>Protection</span>
+                  </div>
+                  <div class="category-item" data-category="MT Shop T-shirt">
+                      <div class="category-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              <path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.47a1 1 0 00.99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 002-2V10h2.15a1 1 0 00.99-.84l.58-3.47a2 2 0 00-1.34-2.23z"></path>
+                          </svg>
+                      </div>
+                      <span>T-shirt</span>
+                  </div>
+                  <div class="category-item" data-category="Others">
+                      <div class="category-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              <circle cx="12" cy="12" r="10"></circle>
+                              <line x1="12" y1="8" x2="12" y2="16"></line>
+                              <line x1="8" y1="12" x2="16" y2="12"></line>
+                          </svg>
+                      </div>
+                      <span>Others</span>
+                  </div>
+              </div>
+          </div>
+          
           <div class="product-grid" id="productGrid">
               <!-- Products will be dynamically added here -->
           </div>
@@ -84,8 +138,6 @@
 </script>
     </main>
 
-
-
   <footer>
     <div class="footer-content">
         <div class="footer-logo">
@@ -106,4 +158,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-

@@ -1,14 +1,15 @@
-let products = [];
-let cart = [];
+let products = []
+let cart = []
+let currentCategory = "All" // Default category is "All"
 
 // Fetch products from products.json
-fetch('products.json')
-  .then(response => response.json())
-  .then(data => {
-    products = data;
-    renderProducts();
+fetch("products.json")
+  .then((response) => response.json())
+  .then((data) => {
+    products = data
+    renderProducts()
   })
-  .catch(error => console.error('Error loading products:', error));
+  .catch((error) => console.error("Error loading products:", error))
 
 // Function to create product cards
 function createProductCard(product) {
@@ -32,12 +33,30 @@ function createProductCard(product) {
   return card
 }
 
+// Function to filter products by category
+function filterProductsByCategory(category) {
+  if (category === "All") {
+    return products
+  } else {
+    return products.filter((product) => product.category === category)
+  }
+}
+
 // Function to render products
 function renderProducts() {
   const productGrid = document.getElementById("productGrid")
   if (productGrid) {
-    productGrid.innerHTML = ''; // Clear existing content
-    products.forEach((product) => {
+    productGrid.innerHTML = "" // Clear existing content
+
+    // Filter products by current category
+    const filteredProducts = filterProductsByCategory(currentCategory)
+
+    if (filteredProducts.length === 0) {
+      productGrid.innerHTML = '<div class="no-products">No products found in this category.</div>'
+      return
+    }
+
+    filteredProducts.forEach((product) => {
       const card = createProductCard(product)
       productGrid.appendChild(card)
     })
@@ -107,6 +126,30 @@ document.addEventListener("click", (e) => {
     const productId = Number.parseInt(e.target.getAttribute("data-id"))
     addToCart(productId)
   }
+})
+
+// Event listener for category selection
+document.addEventListener("DOMContentLoaded", () => {
+  const categoryItems = document.querySelectorAll(".category-item")
+
+  categoryItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      // Remove active class from all categories
+      categoryItems.forEach((cat) => cat.classList.remove("active"))
+
+      // Add active class to clicked category
+      item.classList.add("active")
+
+      // Update current category
+      currentCategory = item.getAttribute("data-category")
+
+      // Re-render products with the new category filter
+      renderProducts()
+
+      // Scroll to products section
+      document.getElementById("products").scrollIntoView({ behavior: "smooth" })
+    })
+  })
 })
 
 // Function to create the cart modal
@@ -242,26 +285,33 @@ document.getElementById("cartIcon").addEventListener("click", (e) => {
   openCartModal()
 })
 
+// Smooth scroll for navigation links with offset for fixed header
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll("nav ul li a").forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      const href = this.getAttribute("href")
+      if (href.startsWith("#")) {
+        e.preventDefault()
+        const targetId = href.substring(1)
+        const targetElement = document.getElementById(targetId)
+        if (targetElement) {
+          // Calculate header height dynamically
+          const header = document.querySelector("header")
+          const headerHeight = header ? header.offsetHeight : 0
 
-// Smooth scroll for navigation links
-document.querySelectorAll("nav ul li a").forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
-    const href = this.getAttribute("href")
-    if (href.startsWith("#")) {
-      e.preventDefault()
-      const targetId = href.substring(1)
-      const targetElement = document.getElementById(targetId)
-      if (targetElement) {
-        const headerOffset = 120
-        const elementPosition = targetElement.getBoundingClientRect().top
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+          // Add extra padding (increased from 20 to 60px for better visibility)
+          const extraPadding = 60
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth",
-        })
+          const offsetPosition =
+            targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight - extraPadding
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth",
+          })
+        }
       }
-    }
+    })
   })
 })
 
@@ -316,7 +366,7 @@ window.addEventListener("load", initPage)
 // Add event listener to close modal when clicking outside
 document.addEventListener("click", (e) => {
   const modal = document.querySelector(".cart-modal")
-  if (modal.style.display === "flex" && !e.target.closest(".cart-modal-content")) {
+  if (modal && modal.style.display === "flex" && !e.target.closest(".cart-modal-content")) {
     closeCartModal()
   }
 })
