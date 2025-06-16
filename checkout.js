@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Promotion code logic
   const promotions = {
-    yingchye520: 32.0, // RM 32.00 discount
+    1637218739821: 0.0, // RM 32.00 discount
   }
 
   let appliedDiscount = 0
