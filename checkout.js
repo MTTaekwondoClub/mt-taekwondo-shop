@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Promotion code logic with specific item name requirements
   const promotions = {
-    eugene123: {
+    1288239823982: {
       discountPerPair: 32.0, // RM 32.00 discount per pair
       requiredItems: ["Taekwondo Uniform (White Belt Included)", "MT Taekwondo Club T-shirt (Standard Series)"],
       description: "Buy Taekwondo Uniform and MT Club T-shirt together",
