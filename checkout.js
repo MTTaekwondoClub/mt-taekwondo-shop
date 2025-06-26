@@ -5,12 +5,61 @@ document.addEventListener("DOMContentLoaded", () => {
   const promoCodeInput = document.getElementById("promo-code")
   const applyPromoButton = document.getElementById("apply-promo")
 
-  // Promotion code logic
+  // Promotion code logic with specific item name requirements
   const promotions = {
-    1637218739821: 0.0, // RM 32.00 discount
+    eugene123: {
+      discountPerPair: 32.0, // RM 32.00 discount per pair
+      requiredItems: ["Taekwondo Uniform (White Belt Included)", "MT Taekwondo Club T-shirt (Standard Series)"],
+      description: "Buy Taekwondo Uniform and MT Club T-shirt together",
+    },
+    // You can add more promotion codes here with different requirements
+    // Example:
+    // combo50: {
+    //   discountPerPair: 50.0,
+    //   requiredItems: [
+    //     "Taekwondo Uniform (White Belt Included)",
+    //     "Hand Gloves"
+    //   ],
+    //   description: "Buy Uniform and Hand Gloves together"
+    // }
   }
 
   let appliedDiscount = 0
+  let appliedPromoCode = ""
+  let discountPairs = 0
+
+  // Function to check how many complete pairs of required items are in cart
+  function checkItemPairs(requiredItems) {
+    console.log("Checking item pairs for:", requiredItems)
+    console.log("Cart items:", cartItems)
+
+    // Count quantities of each required item in cart
+    const itemCounts = {}
+
+    requiredItems.forEach((itemName) => {
+      itemCounts[itemName] = 0
+    })
+
+    // Count quantities of required items in cart
+    cartItems.forEach((cartItem) => {
+      if (requiredItems.includes(cartItem.name)) {
+        itemCounts[cartItem.name] += cartItem.quantity
+      }
+    })
+
+    console.log("Item counts:", itemCounts)
+
+    // Find the minimum quantity among required items (this determines how many complete pairs we have)
+    const quantities = Object.values(itemCounts)
+    const minQuantity = Math.min(...quantities)
+
+    // Check if we have at least one of each required item
+    const hasAllItems = quantities.every((qty) => qty > 0)
+
+    console.log("Min quantity:", minQuantity, "Has all items:", hasAllItems)
+
+    return hasAllItems ? minQuantity : 0
+  }
 
   function updateCartDisplay() {
     cartItemsContainer.innerHTML = ""
@@ -27,12 +76,13 @@ document.addEventListener("DOMContentLoaded", () => {
     cartItems.forEach((item, index) => {
       const itemElement = document.createElement("div")
       itemElement.classList.add("checkout-cart-item")
-      
+
       // Fix image reference - use thumbnail property instead of image
       itemElement.innerHTML = `
                 <img src="${item.thumbnail}" alt="${item.name}">
                 <div class="checkout-item-details">
                     <span class="checkout-item-name">${item.name}</span>
+                    <span class="checkout-item-category">${item.category || "Other"}</span>
                     <span class="checkout-item-stock ${item.inStock ? "in-stock" : "out-of-stock"}">
                         ${item.inStock ? "In stock" : "Out of stock"}
                     </span>
@@ -60,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // For total calculation, treat "-" as 0
     const adminFeeValue = adminFee === "-" ? 0 : adminFee
     const shippingFeeValue = shippingFee === "-" ? 0 : shippingFee
-    
+
     // Calculate total with all components
     const total = subtotal - discount + shippingFeeValue + adminFeeValue
 
@@ -82,6 +132,16 @@ document.addEventListener("DOMContentLoaded", () => {
       <span class="label">Discount:</span>
       <span class="value">${discount > 0 ? `RM ${discount.toFixed(2)}` : "-"}</span>
     </div>
+    ${
+      appliedPromoCode && discountPairs > 0
+        ? `
+    <div class="price-row promo-applied">
+      <span class="label">Applied Code:</span>
+      <span class="value">${appliedPromoCode} (${discountPairs} pair${discountPairs > 1 ? "s" : ""})</span>
+    </div>
+    `
+        : ""
+    }
     <div class="price-row">
       <span class="label">Total:</span>
       <span class="value">RM ${total.toFixed(2)}</span>
@@ -98,49 +158,49 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
     const total = subtotal - appliedDiscount
-    
-    const orderSummary = `${orderDetails}\n\nSubtotal: RM${subtotal.toFixed(2)}\nShipping Fee: -\nAdministration Fee: -\nDiscount: ${appliedDiscount > 0 ? `RM${appliedDiscount.toFixed(2)}` : "-"}\nTotal: RM${total.toFixed(2)}`
+
+    const orderSummary = `${orderDetails}\n\nSubtotal: RM${subtotal.toFixed(2)}\nShipping Fee: -\nAdministration Fee: -\nDiscount: ${appliedDiscount > 0 ? `RM${appliedDiscount.toFixed(2)}` : "-"}${appliedPromoCode && discountPairs > 0 ? `\nPromo Code: ${appliedPromoCode} (${discountPairs} pair${discountPairs > 1 ? "s" : ""})` : ""}\nTotal: RM${total.toFixed(2)}`
 
     // Store order details in localStorage before redirecting
-    localStorage.setItem("pendingOrder", orderSummary);
-    
+    localStorage.setItem("pendingOrder", orderSummary)
+
     // Create a confirmation dialog
-    showOrderConfirmation(orderSummary);
+    showOrderConfirmation(orderSummary)
   }
 
   // Function to show order confirmation dialog
   function showOrderConfirmation(orderSummary) {
     // Format the order summary for better display
-    const formattedSummary = formatOrderSummary(orderSummary);
-    
+    const formattedSummary = formatOrderSummary(orderSummary)
+
     // Create overlay
-    const overlay = document.createElement("div");
-    overlay.className = "order-overlay";
-    overlay.style.position = "fixed";
-    overlay.style.top = "0";
-    overlay.style.left = "0";
-    overlay.style.width = "100%";
-    overlay.style.height = "100%";
-    overlay.style.backgroundColor = "rgba(0, 0, 0, 0.7)";
-    overlay.style.zIndex = "1000";
-    overlay.style.display = "flex";
-    overlay.style.justifyContent = "center";
-    overlay.style.alignItems = "center";
-    overlay.style.backdropFilter = "blur(5px)";
-    
+    const overlay = document.createElement("div")
+    overlay.className = "order-overlay"
+    overlay.style.position = "fixed"
+    overlay.style.top = "0"
+    overlay.style.left = "0"
+    overlay.style.width = "100%"
+    overlay.style.height = "100%"
+    overlay.style.backgroundColor = "rgba(0, 0, 0, 0.7)"
+    overlay.style.zIndex = "1000"
+    overlay.style.display = "flex"
+    overlay.style.justifyContent = "center"
+    overlay.style.alignItems = "center"
+    overlay.style.backdropFilter = "blur(5px)"
+
     // Create confirmation dialog
-    const dialog = document.createElement("div");
-    dialog.className = "order-confirmation-dialog";
-    dialog.style.backgroundColor = "white";
-    dialog.style.padding = "30px";
-    dialog.style.borderRadius = "12px";
-    dialog.style.maxWidth = "90%";
-    dialog.style.width = "500px";
-    dialog.style.maxHeight = "80vh";
-    dialog.style.overflow = "auto";
-    dialog.style.boxShadow = "0 10px 25px rgba(0, 0, 0, 0.2)";
-    dialog.style.animation = "fadeIn 0.3s ease-out";
-    
+    const dialog = document.createElement("div")
+    dialog.className = "order-confirmation-dialog"
+    dialog.style.backgroundColor = "white"
+    dialog.style.padding = "30px"
+    dialog.style.borderRadius = "12px"
+    dialog.style.maxWidth = "90%"
+    dialog.style.width = "500px"
+    dialog.style.maxHeight = "80vh"
+    dialog.style.overflow = "auto"
+    dialog.style.boxShadow = "0 10px 25px rgba(0, 0, 0, 0.2)"
+    dialog.style.animation = "fadeIn 0.3s ease-out"
+
     dialog.innerHTML = `
       <style>
         @keyframes fadeIn {
@@ -267,71 +327,75 @@ document.addEventListener("DOMContentLoaded", () => {
         <button id="cancelOrder" class="cancel-btn">Cancel</button>
         <button id="confirmOrder" class="confirm-btn">Confirm Order</button>
       </div>
-    `;
-    
-    overlay.appendChild(dialog);
-    document.body.appendChild(overlay);
-    
+    `
+
+    overlay.appendChild(dialog)
+    document.body.appendChild(overlay)
+
     // Add event listeners
     document.getElementById("cancelOrder").addEventListener("click", () => {
-      document.body.removeChild(overlay);
-    });
-    
+      document.body.removeChild(overlay)
+    })
+
     document.getElementById("confirmOrder").addEventListener("click", () => {
       // Remove the dialog
-      document.body.removeChild(overlay);
-      
+      document.body.removeChild(overlay)
+
       // Get the order summary from localStorage
-      const orderSummary = localStorage.getItem("pendingOrder");
-      
+      const orderSummary = localStorage.getItem("pendingOrder")
+
       // Create the form URL with the order summary as a parameter
-      const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfcv5cmc3WlOalEyLaa3muEue-5-IV_xbe55plzAIc7s_Wc-w/viewform?usp=pp_url&entry.785150090=" + encodeURIComponent(orderSummary);
-      
+      const formUrl =
+        "https://docs.google.com/forms/d/e/1FAIpQLSfcv5cmc3WlOalEyLaa3muEue-5-IV_xbe55plzAIc7s_Wc-w/viewform?usp=pp_url&entry.785150090=" +
+        encodeURIComponent(orderSummary)
+
       // Open the form in the same window
-      window.location.href = formUrl;
-      
+      window.location.href = formUrl
+
       // Clear cart and pending order
-      localStorage.removeItem("cart");
-      localStorage.removeItem("pendingOrder");
-      
+      localStorage.removeItem("cart")
+      localStorage.removeItem("pendingOrder")
+
       // Show a success message before redirecting
-      showPopupMessage("Order submitted successfully! Redirecting to form...");
-    });
+      showPopupMessage("Order submitted successfully! Redirecting to form...")
+    })
   }
-  
+
   // Function to format the order summary for better display
   function formatOrderSummary(orderSummary) {
     // Split the summary into lines
-    const lines = orderSummary.split('\n');
-    
+    const lines = orderSummary.split("\n")
+
     // Separate the items from the totals
-    const itemsEnd = lines.findIndex(line => line === '');
-    const items = lines.slice(0, itemsEnd);
-    const totals = lines.slice(itemsEnd + 1);
-    
+    const itemsEnd = lines.findIndex((line) => line === "")
+    const items = lines.slice(0, itemsEnd)
+    const totals = lines.slice(itemsEnd + 1)
+
     // Format the items
-    const formattedItems = items.map(item => `<div class="order-item">${item}</div>`).join('');
-    
+    const formattedItems = items.map((item) => `<div class="order-item">${item}</div>`).join("")
+
     // Format the totals
-    const formattedTotals = totals.map((total, index) => {
-      const [label, value] = total.split(': ');
-      const isLast = index === totals.length - 1;
-      
-      return `
-        <div class="order-total-row ${isLast ? 'final' : ''}">
+    const formattedTotals = totals
+      .map((total, index) => {
+        const [label, value] = total.split(": ")
+        const isLast = index === totals.length - 1
+
+        return `
+        <div class="order-total-row ${isLast ? "final" : ""}">
           <span>${label}:</span>
           <span>${value}</span>
         </div>
-      `;
-    }).join('');
-    
+      `
+      })
+      .join("")
+
     // Combine everything
     return `
       ${formattedItems}
       <div class="order-total-section">
         ${formattedTotals}
       </div>
-    `;
+    `
   }
 
   // Add submit button to the page
@@ -355,6 +419,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       updateCartDisplay()
       localStorage.setItem("cart", JSON.stringify(cartItems))
+
+      // Re-validate promo code if one is applied
+      if (appliedPromoCode) {
+        validateAndApplyPromo(appliedPromoCode)
+      }
     }
 
     if (e.target.closest(".checkout-delete-item")) {
@@ -362,6 +431,11 @@ document.addEventListener("DOMContentLoaded", () => {
       cartItems.splice(index, 1)
       updateCartDisplay()
       localStorage.setItem("cart", JSON.stringify(cartItems))
+
+      // Re-validate promo code if one is applied
+      if (appliedPromoCode) {
+        validateAndApplyPromo(appliedPromoCode)
+      }
     }
   })
 
@@ -374,18 +448,69 @@ document.addEventListener("DOMContentLoaded", () => {
       cartItems[index].quantity = newQuantity
       updateCartDisplay()
       localStorage.setItem("cart", JSON.stringify(cartItems))
+
+      // Re-validate promo code if one is applied
+      if (appliedPromoCode) {
+        validateAndApplyPromo(appliedPromoCode)
+      }
     }
   })
+
+  // Function to validate and apply promo code
+  function validateAndApplyPromo(promoCode) {
+    const promotion = promotions[promoCode]
+
+    if (!promotion) {
+      showPopupMessage("Invalid promotion code. Please try again.", true)
+      return false
+    }
+
+    // Check how many complete pairs of required items are in cart
+    const pairs = checkItemPairs(promotion.requiredItems)
+
+    if (pairs === 0) {
+      const requiredItemsText = promotion.requiredItems.join(" and ")
+      showPopupMessage(
+        `This promotion code requires you to have both "${requiredItemsText}" in your cart. ${promotion.description}`,
+        true,
+      )
+      appliedDiscount = 0
+      appliedPromoCode = ""
+      discountPairs = 0
+      updateCartDisplay()
+      return false
+    }
+
+    // Apply the promotion (multiply discount by number of pairs)
+    appliedDiscount = promotion.discountPerPair * pairs
+    appliedPromoCode = promoCode
+    discountPairs = pairs
+    updateCartDisplay()
+
+    const pairText = pairs === 1 ? "pair" : "pairs"
+    const totalDiscount = promotion.discountPerPair * pairs
+    showPopupMessage(
+      `Promotion code applied! You get RM ${totalDiscount.toFixed(2)} discount for ${pairs} ${pairText}.`,
+    )
+    return true
+  }
 
   // Handle promotion code application
   applyPromoButton.addEventListener("click", () => {
     const promoCode = promoCodeInput.value.trim().toLowerCase()
-    if (promotions.hasOwnProperty(promoCode)) {
-      appliedDiscount = promotions[promoCode]
-      updateCartDisplay()
-      showPopupMessage("Promotion code applied! You get a RM 50.00 discount.")
-    } else {
-      showPopupMessage("Invalid promotion code. Please try again.", true)
+
+    if (!promoCode) {
+      showPopupMessage("Please enter a promotion code.", true)
+      return
+    }
+
+    validateAndApplyPromo(promoCode)
+  })
+
+  // Allow Enter key to apply promo code
+  promoCodeInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      applyPromoButton.click()
     }
   })
 
@@ -405,19 +530,18 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => {
         document.body.removeChild(popup)
       }, 300)
-    }, 3000)
+    }, 4000) // Show for 4 seconds for longer messages
   }
 
   // Check if there's a pending order after returning from form submission
   if (localStorage.getItem("pendingOrder")) {
     // Clear the pending order
-    localStorage.removeItem("pendingOrder");
-    
+    localStorage.removeItem("pendingOrder")
+
     // Show a success message
-    showPopupMessage("Thank you for your order! We'll contact you soon.");
+    showPopupMessage("Thank you for your order! We'll contact you soon.")
   }
 
   // Initial render
   updateCartDisplay()
 })
-

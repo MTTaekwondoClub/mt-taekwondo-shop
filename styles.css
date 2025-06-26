@@ -512,6 +512,13 @@ footer {
   margin-bottom: 0.25rem;
 }
 
+.checkout-item-category {
+  font-size: 0.8rem;
+  color: #666;
+  margin-bottom: 0.25rem;
+  font-style: italic;
+}
+
 .checkout-item-stock {
   font-size: 0.875rem;
   margin-bottom: 0.25rem;
@@ -618,6 +625,19 @@ footer {
 .total-list .value {
   font-weight: bold;
   text-align: right;
+}
+
+.promo-applied {
+  background-color: #e8f5e8;
+  padding: 0.5rem 1rem !important;
+  border-radius: 4px;
+  border: 1px solid #4caf50;
+}
+
+.promo-applied .label,
+.promo-applied .value {
+  color: #2e7d32;
+  font-weight: bold;
 }
 
 @media screen and (max-width: 768px) {
@@ -1203,6 +1223,8 @@ input[type="number"]#quantity::-webkit-inner-spin-button {
   z-index: 1000;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
+  max-width: 350px;
+  word-wrap: break-word;
 }
 
 .popup-message.success {
